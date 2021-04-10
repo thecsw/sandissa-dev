@@ -1,8 +1,8 @@
 
 # MQTT certificates
-CA_CERT = "/home/pi/shell/ca/ca.crt"
-CLIENT_CERT = "/home/pi/shell/new_client/new_client.crt"
-CLIENT_KEY = "/home/pi/shell/new_client/new_client.key"
+CA_CERT = "./../keys/ca/ca.crt"
+CLIENT_CERT = "./../client/client.crt"
+CLIENT_KEY = "./../client/client.key"
 TLS_VERSION = 2
 
 # MQTT broker options

@@ -1,0 +1,3 @@
+[submodule "v1/web"]
+	path = v1/web
+	url = git@github.com:thecsw/sandissa
