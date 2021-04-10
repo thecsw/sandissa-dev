@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <title>Sandissa</title>
+        <style>
+            body {
+                margin: 40px auto;
+                max-width: 900px;
+                line-height: 1.6;
+                font-size: 16px;
+                background: #fffff4;
+                color: #3a1616;
+                padding: 0 10px;
+            }
+            input {
+                padding: 10px 16px;
+                margin: 2px 0;
+                box-sizing: border-box;
+                border: 2px solid #dabebe;
+                border-radius: 6px;
+                background: #fffff4;
+                color: #3a1616;
+                font-size: 16px;
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+                outline: none;
+            }
+            input:focus {
+                border: 2px solid #3a1616;
+            }
+            .button {
+                background-color: #fffff4;
+                border: none;
+                color: black;
+                padding: 6px 14px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+                border: 2px solid #3a1616;
+                border-radius: 6px;
+            }
+            .button:hover {
+                background-color: #3a1616;
+                color: white;
+            }
+            .isa_info, .isa_success, .isa_warning, .isa_error {
+                width: 90%;
+                margin: 10px 0px;
+                padding:12px;
+            }
+            .isa_info {
+                color: #00529B;
+                background-color: #BDE5F8;
+            }
+            .isa_success {
+                color: #4F8A10;
+                background-color: #DFF2BF;
+            }
+            .isa_warning {
+                color: #9F6000;
+                background-color: #FEEFB3;
+            }
+            .isa_error {
+                color: #D8000C;
+                background-color: #FFD2D2;
+            }
+            h1,
+            h2,
+            h3 {
+                line-height: 1.2;
+            }
+            img {
+                max-width: 750px;
+                border-radius: 10px;
+            }
+            a {
+                cursor: pointer;
+                color: #217ab7;
+                line-height: inherit;
+            }
+            a:hover {
+                color: white;
+                background-color: #3297d3;
+            }
+            a:visited {
+                color: #43458b;
+                border-color: #43458b;
+            }
+            ::selection {
+                color: white;
+                background: #ff4081;
+            }  
+        </style>
+    </head>
+    <body>
+        <h2>Temp: <br> &emsp; [loading...]</h2>
+        <p>
+            <h2>LED control:<h2>
+            <button class="button" id="turn_on">ON</button>
+            <button class="button" id="turn_off">OFF</button>
+        </p>
+        <div class="isa_success" id="report"></div>
+        <script>
+            window.onload = () => {
+                let onButton = document.querySelector("#turn_on");
+                let offButton = document.querySelector("#turn_off");
+                let report = document.querySelector("#report");
+                let apiAddress = "http://localhost:4200";
+                report.style.display = 'none';
+                
+                turnON = (e) => {
+                    fetch(apiAddress+"/turn_on", {
+                        method: 'POST',
+                        cache: 'no-cache'
+                    });
+                    report.innerHTML = "Turned ON!";
+                    report.className = 'isa_success'
+                    report.style.display = 'block';
+                    setTimeout(() => {
+                        report.style.display = 'none';
+                    }, 1500);
+                };
+
+                turnOFF = (e) => {
+                    fetch(apiAddress+"/turn_off", {
+                        method: 'POST',
+                        cache: 'no-cache'
+                    });
+                    report.innerHTML = "Turned OFF!";
+                    report.className = 'isa_error'
+                    report.style.display = 'block';
+                    setTimeout(() => {
+                        report.style.display = 'none';
+                    }, 1500);
+                };
+
+                onButton.addEventListener('click', turnON);
+                offButton.addEventListener('click', turnOFF);
+            };
+        </script>
+    </body>
+</html>
