@@ -1,3 +1,6 @@
 [submodule "v1/web"]
 	path = v1/web
 	url = git@github.com:thecsw/sandissa
+[submodule "v1/server"]
+	path = v1/server
+	url = git@github.com:thecsw/sandissa-server
