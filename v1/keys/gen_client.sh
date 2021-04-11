@@ -10,4 +10,4 @@ mkdir -p $1
 cd $1
 openssl ecparam -name sect571r1 -out $1.key -genkey
 openssl req -new -out $1.csr -key $1.key -subj "/C=US/ST=KS/L=Lawrence/O=KU/OU=EECS/CN=mqtt.sandyuraz.com"
-openssl x509 -req -sha512 -in $1.csr -CA ../ca/ca.crt -CAkey ../ca/ca.key -CAserial ../ca/ca.srl -out $1.crt -days 100-
+openssl x509 -req -sha512 -in $1.csr -CA ../ca/ca.crt -CAkey ../ca/ca.key -CAserial ../ca/ca.srl -out $1.crt -days 100
